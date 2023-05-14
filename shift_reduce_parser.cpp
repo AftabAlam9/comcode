@@ -1,10 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 int z = 0, i = 0, j = 0, c = 0;
+
 char a[16], ac[20], stk[15], act[10];
+
 void check()
 {
 	strcpy(ac,"REDUCE TO E -> ");
+	
 	for(z = 0; z < c; z++)
 	{
 		if(stk[z] == 'a')
@@ -18,23 +22,20 @@ void check()
 		
 	for(z = 0; z < c - 2; z++)
 	{
-		if(stk[z] == 'E' && stk[z + 1] == '+' &&
-								stk[z + 2] == 'E')
+		if(stk[z] == 'E' && stk[z + 1] == '+' && stk[z + 2] == 'E')
 		{
 			printf("%sE+E", ac);
 			stk[z] = 'E';
 			stk[z + 1] = '\0';
 			stk[z + 2] = '\0';
 			printf("\n$%s\t%s$\t", stk, a);
-			i = i - 2;
+			i -=2;
 		}
-		
 	}
 		
 	for(z = 0; z < c - 2; z++)
 	{
-		if(stk[z] == 'E' && stk[z + 1] == '*' &&
-								stk[z + 2] == 'E')
+		if(stk[z] == 'E' && stk[z + 1] == '*' && stk[z + 2] == 'E')
 		{
 			printf("%sE*E", ac);
 			stk[z]='E';
@@ -44,8 +45,9 @@ void check()
 			i = i - 2;
 		}
 	}
-	return ; // return to main
+	return ;
 }
+
 int main()
 {
 	printf("GRAMMAR is -\nE->E+E \nE->E*E \nE->a\n");	
@@ -66,6 +68,6 @@ int main()
 	check();
 	if(stk[0] == 'E' && stk[1] == '\0')
 		printf("Accept\n");
-	else //else reject
+	else 
 		printf("Reject\n");
 }
